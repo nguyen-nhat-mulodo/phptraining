@@ -53,7 +53,15 @@ class Controller_RegeditUser extends Controller_Rest
             return;
         }
         //echo 'aaa';exit;
-        $m->regedit_user($mail, $password, $username);
+        $insert_id = $m->regedit_user($mail, $password, $username);
+        
+        $this->Response(
+                array(
+                        'status'  => 200,
+                        'message'   => "regedit user id " .$insert_id . " successful",
+                )
+        );
+        return;
 
     }
 }

@@ -23,7 +23,7 @@ class Model_mRegeditUser extends \Model{
         //echo 'bbb';exit;
         list($insert_id, $rows_affected) = DB::insert('Users')->set($data_user)->execute();
         
-        var_dump($insert_id);exit;
+        //var_dump($insert_id);exit;
         
         return $insert_id;
     }
