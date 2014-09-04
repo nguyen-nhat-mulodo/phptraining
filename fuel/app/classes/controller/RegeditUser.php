@@ -1,6 +1,6 @@
 <?php
 
-use \Model_mRegeditUser;
+use \Model_mUser;
 use Fuel\Core\Input;
 
 class Controller_RegeditUser extends Controller_Rest
@@ -27,11 +27,21 @@ class Controller_RegeditUser extends Controller_Rest
         }
         
         //search user account
-        $m = new Model_mRegeditUser();
+        $m = new Model_mUser();
         
         $data = array();
         
-        $data_user = $m->search_user($mail);
+        try {
+            $data_user = $m->search_user($mail);
+        } catch (Exception $e) {
+            $this->Response(
+                    array(
+                            'status'    => 500,
+                            'message'   => "InternalÊServerÊError",
+                    )
+            );
+            return;
+        }        
         
         if ($data_user != 0) {
             $this->Response(
@@ -61,7 +71,7 @@ class Controller_RegeditUser extends Controller_Rest
                         'message'   => "regedit user id " .$insert_id . " successful",
                 )
         );
-        return;
+        
 
     }
 }
