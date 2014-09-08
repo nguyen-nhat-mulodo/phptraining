@@ -89,6 +89,18 @@ class token
 		$token_table->user_id = $this->user_id;
 		$token_table->save();
 	}
+	public function update()
+	{
+		$token = Model_Token::find('all',array(
+			'where' => array(
+				array('token_id', $this->token_id),
+			),
+		));
+		$token = reset($token);
+		$token->expired = $this->expired_timestamp;
+		$token->user_id = $this->user_id;
+		$token->save();		
+	}
 	static public function get_exist_token($token_id)
 	{
 		$token_rec = Model_Token::find('all', array(
@@ -97,20 +109,23 @@ class token
 			),
 		));
 		$token_rec = reset($token_rec);
-		if($token_rec !== null)
-			$new_token = new token($token_rec->token_id, $token_rec->expired);
+		if($token_rec != null)
+		{
+			$new_token = new token($token_rec->token_id, $token_rec->user_id);
 			return  $new_token;
+		}
+			
 		return null;
 	}
 	static public function check_update_exist_token($token_id, $hour_expire = 2)
 	{
 		$token = token::get_exist_token($token_id);
-		if($token !== null)
+		if($token != null)
 		{
 			if(token::remove_expired_token($token->get_token_id()) === false) // token's still not expired
 			{
 				$token->set_hour_expire($hour_expire);						// then add more time expired
-				$token->save();
+				$token->update();
 				return true;
 			}
 			return false;
