@@ -1,0 +1,11 @@
+<?php defined('COREPATH') or exit('No direct script access allowed'); ?>
+
+ERROR - 2014-09-01 09:28:46 --> Notice - Undefined variable: oldpass in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/changepass.php on line 19
+ERROR - 2014-09-01 09:40:19 --> Fatal Error - Call to undefined function post() in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/changepass.php on line 14
+ERROR - 2014-09-01 09:40:32 --> Fatal Error - Call to undefined function post() in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/changepass.php on line 14
+ERROR - 2014-09-01 09:41:03 --> Notice - Undefined variable: oldpass in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/changepass.php on line 21
+ERROR - 2014-09-01 13:24:14 --> 1054 - SQLSTATE[42S22]: Column not found: 1054 Unknown column 't0.created_at' in 'field list' with query: "SELECT `t0`.`id` AS `t0_c0`, `t0`.`title` AS `t0_c1`, `t0`.`content` AS `t0_c2`, `t0`.`parent_post_id` AS `t0_c3`, `t0`.`created_at` AS `t0_c4`, `t0`.`updated_at` AS `t0_c5` FROM `posts` AS `t0`" in /Applications/MAMP/htdocs/fuel/fuel/core/classes/database/pdo/connection.php on line 270
+ERROR - 2014-09-01 13:25:41 --> 1054 - SQLSTATE[42S22]: Column not found: 1054 Unknown column 't0.created_at' in 'field list' with query: "SELECT `t0`.`id` AS `t0_c0`, `t0`.`title` AS `t0_c1`, `t0`.`content` AS `t0_c2`, `t0`.`parent_post_id` AS `t0_c3`, `t0`.`created_at` AS `t0_c4`, `t0`.`updated_at` AS `t0_c5` FROM `posts` AS `t0`" in /Applications/MAMP/htdocs/fuel/fuel/core/classes/database/pdo/connection.php on line 270
+ERROR - 2014-09-01 13:25:57 --> 1054 - SQLSTATE[42S22]: Column not found: 1054 Unknown column 't0.created_at' in 'field list' with query: "SELECT `t0`.`id` AS `t0_c0`, `t0`.`title` AS `t0_c1`, `t0`.`content` AS `t0_c2`, `t0`.`parent_post_id` AS `t0_c3`, `t0`.`created_at` AS `t0_c4`, `t0`.`updated_at` AS `t0_c5` FROM `posts` AS `t0`" in /Applications/MAMP/htdocs/fuel/fuel/core/classes/database/pdo/connection.php on line 270
+ERROR - 2014-09-01 13:56:10 --> Notice - Undefined variable: post_parent_id in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/post.php on line 31
+ERROR - 2014-09-01 15:02:06 --> Notice - Undefined variable: msg in /Applications/MAMP/htdocs/fuel/fuel/app/classes/controller/post.php on line 13

@@ -1,4 +1,5 @@
 <?php
+use Fuel\Core\Autoloader;
 // Bootstrap the framework DO NOT edit this
 require COREPATH.'bootstrap.php';
 
@@ -11,6 +12,8 @@ Autoloader::add_classes(array(
 // Register the autoloader
 Autoloader::register();
 
+//Add core namespace
+Autoloader::add_core_namespace('helper\token');
 /**
  * Your environment.  Can be set to any of the following:
  *
