@@ -37,25 +37,14 @@ class Controller_LoginUser extends Controller_Rest
 	            );
 	            return;
 	        }
-	        //Add Date: 09/09/2014 - Name :Tran Quoc Dung Start
-	        if($data_user['user_ban'] == 1)
-	        {
-	        	$this->Response(
-	        			 array(
-	                            'status'    => 408,
-	                            'message'   => "User was banned",
-	                    )
-	        	);
-	        	return;
-	        }
-	        //Add Date : 09/09/2014 - Name: Tran Quoc Dung End
+	        
 	        
 	    } catch (Exception $e) {
 	        
 	        $this->Response(
 	                array(
 	                        'status'    => 500,
-	                        'message'   => "InternalÃŠServerÃŠError",
+	                        'message'   => "InternalÊServerÊError",
 	                )
 	        );
 	        return;
@@ -75,7 +64,6 @@ class Controller_LoginUser extends Controller_Rest
 	            array(
 	                    'status'  => 200,
 	                    'message' => "Login Successfull",
-	                    'token' => $token_id;
 	            )
 	    );
 	    
