@@ -2,7 +2,7 @@
 use \Model_mUser;
 use \Model_mToken;
 
-//kien test
+
 class Controller_LoginUser extends Controller_Rest
 {
 
@@ -37,7 +37,22 @@ class Controller_LoginUser extends Controller_Rest
 	            );
 	            return;
 	        }
-	        
+	        if($data_user['ban']==1){
+	        	$this->Response(
+	        			array(
+	                            'status'    => 407,
+	                            'message'   => "User has banned",
+	                    )
+	            );
+	            return;
+	        }
+	        $this->Response(
+	                    array(
+	                            'status'    => 200,
+	                            'message'   => "login Successfull",
+	                    )
+	            );
+	            return;
 	        
 	    } catch (Exception $e) {
 	        
