@@ -37,7 +37,7 @@ class Controller_LoginUser extends Controller_Rest
 	            );
 	            return;
 	        }
-	        //Add Date: 09/09/2014 - Name :Tran Quoc Dung Start
+	        //Add Date: 09/09/2014 - Name :Tran Quoc Dung Starts
 	        if($data_user['user_ban'] == 1)
 	        {
 	        	$this->Response(
