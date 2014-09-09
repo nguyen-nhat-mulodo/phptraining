@@ -36,19 +36,21 @@ class Controller_Register extends Controller_Rest
 		$msg = 'empty';
 		foreach ($users as $user)
 		{
-			if ($user->user_id == Input::post('user_id'))
+			if ($user->email == Input::post('email'))
 			{
 				$msg = 'This user is already exist';
 				$flag = false;
 			}			
 		}
-		$flag = true; //for test
+//		$flag = true; //for test
 		if($flag)
 		{
 			$user_table = Model_Users::forge();
 			$user_table->user_id = Input::post('user_id');
 			$user_table->user_name = Input::post('user_name');
 			$user_table->password = md5(Input::post('password'));
+            $user_table->email = Input::post('email');
+            $user_table->created = date('now');
 			if(Input::post('repassword') != Input::post('password'))
 			{	
 				$msg = 're-password not match';

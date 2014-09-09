@@ -7,7 +7,7 @@ class Model_Posts extends \Orm\Model
 		'title',
 		'content',
 		'user_id',
-		'created_at',
+		'created',
 		'modified'
 	);
 

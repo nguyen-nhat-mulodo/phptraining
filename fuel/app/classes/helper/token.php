@@ -28,9 +28,9 @@ class token
 	{
 		$this->user_id = $user_id;
 	}
-	public function get_user_id($user_id)
+	public function get_user_id()
 	{
-		return $this->user_id = $user_id;
+		return $this->user_id;
 	}
 	public function get_token_id()
 	{
@@ -60,8 +60,12 @@ class token
 		$token_rec = reset($token_rec);
 
 		$timestamp = time();					
-		if($token_rec->expired < $timestamp) 	
-			return true;
+		if($token_rec != null)
+		{
+			if($token_rec->expired < $timestamp) 	
+				return true;
+			return false;
+		}
 		return false;
 	}
 	static public function remove_expired_token($token_id)
@@ -97,9 +101,10 @@ class token
 			),
 		));
 		$token = reset($token);
-		$token->expired = $this->expired_timestamp;
-		$token->user_id = $this->user_id;
-		$token->save();		
+
+			$token->expired = $this->expired_timestamp;
+			$token->user_id = $this->user_id;
+			$token->save();	
 	}
 	static public function get_exist_token($token_id)
 	{
@@ -117,20 +122,20 @@ class token
 			
 		return null;
 	}
-	static public function check_update_exist_token($token_id, $hour_expire = 2)
+	static public function check_update_exist_token($token_id, $user_id, $hour_expire = 2)
 	{
 		$token = token::get_exist_token($token_id);
-		if($token != null)
+		if($token != null && $token->user_id == $user_id)
 		{
 			if(token::remove_expired_token($token->get_token_id()) === false) // token's still not expired
 			{
 				$token->set_hour_expire($hour_expire);						// then add more time expired
 				$token->update();
-				return true;
+				return $token;
 			}
-			return false;
+			return null;
 		}
-		return false;
+		return null;
 	}
 	
 	
