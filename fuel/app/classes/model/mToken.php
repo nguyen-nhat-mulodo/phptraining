@@ -28,7 +28,11 @@ class Model_mToken extends Model{
         $query = DB::select("*");
         $query->from("token");
         $query->where("token_id", "=", $token_id);
-        $query->where("expired", ">=", $dt);
+        //$query->where("expired", ">=", $dt);
+        //Edit Date: 10/09/2014 - Name: TranQuocDung Start
+        $query->order_by("id","DESC");
+        $query->limit(1);
+        //Edit Date: 10/09/2014 - Name: TranQuocDung End   
         
         $result = $query->execute();
         //var_dump(DB::last_query());exit;

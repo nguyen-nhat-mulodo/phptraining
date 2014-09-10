@@ -12,6 +12,20 @@ class Model_mUser extends \Model{
        }
        return $select->as_array();
     }
+
+    //Add Date: 19/09/2014 Name: TranQuocDung Start
+    public function search_user_id($id)
+    {
+        $sql = "SELECT * FROM Users WHERE id = '" .$id ."'";
+            
+       $select = DB::query($sql)->execute();
+       //var_dump(count($select));exit;
+       if (count($select) == 0) {
+            return 0;
+       }
+       return $select->as_array();
+    }
+    //Add Date: 19/09/2014 Name: TranQuocDung End
     
     public function  search_login($mail, $password){
     
@@ -43,4 +57,17 @@ class Model_mUser extends \Model{
         
         return $insert_id;
     }
+
+    //Add Date: 19/09/2014 Name: TranQuocDung Start
+    public function set_ban_user($id,$ban)
+    {
+        $result = DB::update('Users')
+                            ->set(array(
+                                'user_ban'  => $ban
+                            ))
+                            ->where('id', '=', $id)
+                            ->execute();
+        return $result;
+    }
+    //Add Date: 19/09/2014 Name: TranQuocDung End
 }
