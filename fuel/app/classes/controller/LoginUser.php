@@ -5,7 +5,7 @@ use \Model_mToken;
 
 class Controller_LoginUser extends Controller_Rest
 {
-	//Dung
+	
 	public function action_Login()
 	{
 	    //post parameter
@@ -71,14 +71,14 @@ class Controller_LoginUser extends Controller_Rest
 	    
 	    $m2->save_token($token_id, $id);
 	    
+	    //Edit Date: 10/09/2014 - Name: TranQuocDung Start
 	    $this->Response(
 	            array(
-	                    'status'  => 200,
-	                    'message' => "Login Successfull",
-	                    'token' => $token_id;
+	            		'error' =>array('status' => 200,'message' => 'Login Successfull'),
+	                    'token' => $token_id,
 	            )
 	    );
-	    
+	    //Edit Date: 10/09/2014 - Name: TranQuocDung End
 		
 	}
 
