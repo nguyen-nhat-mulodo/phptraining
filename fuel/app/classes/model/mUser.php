@@ -69,5 +69,16 @@ class Model_mUser extends \Model{
                             ->execute();
         return $result;
     }
+
+    public function set_role_user($id,$role)
+    {
+        $result = DB::update('Users')
+                            ->set(array(
+                                'user_role'  => $role
+                            ))
+                            ->where('id', '=', $id)
+                            ->execute();
+        return $result;
+    }
     //Add Date: 19/09/2014 Name: TranQuocDung End
 }
