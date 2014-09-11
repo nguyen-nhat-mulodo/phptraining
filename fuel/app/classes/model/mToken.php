@@ -1,6 +1,19 @@
 <?php
-class Model_mToken extends Model{
+class Model_mToken extends \Model{
     
+    public function  search_token($token_id){
+
+        $query = DB::select("*");
+        $query->from("token");
+        $query->where("token_id",$token_id);        
+        
+        $result = $query->execute();
+        if (count($result) == 0) {
+            return 0;
+        }
+        return $result->current();
+    }
+
     public function save_token($token_id, $user_id){
         $temp = new DateTime();
         $dt = $temp->format('Y-m-d H:i:s');
@@ -19,23 +32,5 @@ class Model_mToken extends Model{
         //var_dump($insert_id);exit;
         
         return $insert_id;
-    }
-    
-    public function search_token($token_id){
-        $temp = new DateTime();
-        $dt = $temp->format('Y-m-d H:i:s'); 
-        
-        $query = DB::select("*");
-        $query->from("token");
-        $query->where("token_id", "=", $token_id);
-        $query->where("expired", ">=", $dt);
-        
-        $result = $query->execute();
-        //var_dump(DB::last_query());exit;
-        if (count($result) == 0) {
-            return 0;
-        }
-        //var_dump($result->current());exit;
-        return $result->current();
     }
 }

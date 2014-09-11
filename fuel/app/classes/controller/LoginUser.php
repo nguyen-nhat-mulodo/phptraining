@@ -28,6 +28,17 @@ class Controller_LoginUser extends Controller_Rest
 	    try {
 	        $data_user = $m->search_login($mail, $password);
 	        
+	    } catch (Exception $e) {
+	        
+	        $this->Response(
+	                array(
+	                        'status'    => 500,
+	                        'message'   => "InternalÊServerÊError",
+	                )
+	        );
+	        return;
+	    }
+	    
 	        if ($data_user == 0) {
 	            $this->Response(
 	                    array(
@@ -53,17 +64,6 @@ class Controller_LoginUser extends Controller_Rest
 	                    )
 	            );
 	            return;
-	        
-	    } catch (Exception $e) {
-	        
-	        $this->Response(
-	                array(
-	                        'status'    => 500,
-	                        'message'   => "InternalÊServerÊError",
-	                )
-	        );
-	        return;
-	    }
 	    $id = $data_user["id"];
 	    
 	    $temp = new DateTime();

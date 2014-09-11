@@ -3,14 +3,26 @@ class Model_mUser extends \Model{
     
     public function  search_user($mail){
         
-       $sql = "SELECT * FROM Users WHERE email = '" .$mail ."'";
-            
-       $select = DB::query($sql)->execute();
+       // $sql = "SELECT * FROM Users WHERE email = '" .$mail ."'";
+       //    echo $sql;
+       // $select = DB::query($sql)->execute();
        //var_dump(count($select));exit;
-       if (count($select) == 0) {
+
+        $query = DB::select("*");
+        $query->from("Users");
+        $query->where("email","=",$mail);        
+        
+        $result = $query->execute();
+       // if (count($select) == 0) {
+       //      return 0;
+       // }
+       // echo $select->as_array;
+       // return $select->as_array();
+        if (count($result) == 0) {
             return 0;
-       }
-       return $select->as_array();
+        }
+        // echo $query ;
+        return $result->current();
     }
     
     public function  search_login($mail, $password){
@@ -25,6 +37,8 @@ class Model_mUser extends \Model{
         if (count($result) == 0) {
             return 0;
         }
+        // echo $query;
+        // echo $result;
         return $result->current();
     }
     
@@ -43,4 +57,32 @@ class Model_mUser extends \Model{
         
         return $insert_id;
     }
+
+    public function ban_user($id,  $mode){
+
+        $data_user = array(
+                'user'
+            );
+        $result = DB::update('Users')
+                            ->set(array(
+                                'ban'  => $mode
+                            ))
+                            ->where('email', $id)
+                            ->execute();
+    }
+
+    public function role_user($id, $mode){
+
+        $data_user = array(
+                'user'
+            );
+        $result = DB::update('Users')
+                            ->set(array(
+                                'role'  => $mode
+                            ))
+                            ->where('email', $id)
+                            ->execute();
+    }
+
+
 }
